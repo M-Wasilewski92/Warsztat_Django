@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<form method="post"> {% csrf_token %}
+    {{form}}<br>
+    <button type="submit">Rezerwuj</button>
+</form>
+
+<h2>Rezerwacje Sali {{hall}}: </h2>
+<ul style="list-style: none">
+    {% for reservation in reservations %}
+    <h6> Rezerwacja: </h6>
+    <li> Data Rezerwacji: {{ reservation.date }} </li>
+    <li> Komentarz do Rezerwacji: {{ reservation.comment }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block container %}
+{% if show_all %}
+
+
+<div>
+    <ul style="list-style: none">
+        {% for hall in show_all %}
+        <li><a href="http://127.0.0.1:8000/room/{{hall.id}}/" >{{ hall }}</a></li>
+        <li>{{ hall.hall_capacity }}</li>
+        <li>Czy sala jest obecnie zajęta: {% if reservation %}Sala jest dziś zajęta{% else %}Sala jest dziś wolna{% endif %}
+             </li>
+        <li>Dostępność rzutnika: {% if hall.projector %} Projektor dostępny {% else %}
+            Projektor nie dostępny {% endif %}</li>
+        <li><button><a href="http://127.0.0.1:8000/room/modify/{{hall.id}}">Edytuj</a></button></li>
+        <li><button><a href="http://127.0.0.1:8000/room/delete/{{hall.id}}">Usuń</a></button></li>
+        <li><button><a href="http://127.0.0.1:8000/room/reserve/{{hall.id}}" >Rezerwuj</a></button></li>
+
+
+
+
+        {% endfor %}
+
+{% else %}
+<h1> Brak dostępnych sal </h1>
+{% endif %}
+
+
+
+
+    </ul>
+
+
+
+</div>
+
+
+
+{% endblock %}

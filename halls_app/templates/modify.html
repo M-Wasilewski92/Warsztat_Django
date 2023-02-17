@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block container  %}
+<h1>Zmodyfikuj informacje o sali:</h1>
+<form method="POST"> {% csrf_token %}
+
+    <label>Nazwa Sali: {{ hall }}</label><br>
+    {{name}}<br>
+    <label>Pojemność sali: {{ hall.hall_capacity }} </label><br>
+    {{capacity}}<br>
+    <label>Czy jest rzutnik: {% if hall.projector %}Jest{% else %}Niema{% endif %} </label>
+    <br>{{projector}}<br>
+    <button type="submit"> Edytuj</button>
+</form>
+{% endblock %}

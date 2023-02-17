@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block container  %}
+
+<h1>Id sali : {{ hall.id }}</h1>
+<h1>Nazwa sali : {{hall}}</h1>
+<h1>Ilość miejsc na sali: {{hall.capacity}} </h1>
+<h1>Czy sala jest dostępna ? : {{hall}}  </h1>
+<h1>Czy w sali jest projektor ? : {% if hall.projector %}Jest dostępny{% else %} Nie ma Projektora {% endif %}</h1>
+{% if hall.reservation.all %}
+<h2>Rezerwacje Sali: </h2>
+<ul style="list-style: none">
+    {% for reservation in reservations %}
+    <h6> {{reservation.hall}} </h6>
+    <li> {{ reservation.date }} </li>
+    <li> {{ reservation.comment }}</li>
+    {% endfor %}
+</ul>
+
+{% else %}
+Nie ma rezerwacji
+{% endif %}
+
+
+
+
+    <ul style="list-style: none">
+        <li><button><a href="http://127.0.0.1:8000/room/modify/{{hall.id}}">Edytuj</a></button></li>
+        <li><button><a href="http://127.0.0.1:8000/room/delete/{{hall.id}}">Usuń</a></button></li>
+        <li><button><a href="http://127.0.0.1:8000/room/reserve/{{hall.id}}" >Rezerwuj</a></button></li>
+
+    </ul>
+
+{% endblock %}
